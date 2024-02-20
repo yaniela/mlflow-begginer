@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/2a24691698b84c3b9c517a2528050ea5/artifacts
+deleted_time: 1708442342821
+end_time: 1708442262617
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 2a24691698b84c3b9c517a2528050ea5
+run_name: Lital
+run_uuid: 2a24691698b84c3b9c517a2528050ea5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1708442262600
+status: 3
+tags: []
+user_id: yaniela

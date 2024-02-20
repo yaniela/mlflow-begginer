@@ -1,13 +1,16 @@
-Getting started
+# Getting started
 
-    Clone the repository from Bitbucket.
+Clone the repository
 
-Requirements
+# Requirements
 
 pip install requirements.txt
-Scripts
 
-python calculate_bmi.py python ml_classification.py
-mlflow on terminal
+# Run Scripts
+
+>> python compute_bmi.py 
+>> python ml_classification.py
+
+# Run mlflow on terminal
 
 mlflow ui

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/ab55e28ac6e04818b5995a2ce882036b/artifacts
+deleted_time: 1708442351720
+end_time: 1708441473677
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: ab55e28ac6e04818b5995a2ce882036b
+run_name: Logistic regression
+run_uuid: ab55e28ac6e04818b5995a2ce882036b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1708441471019
+status: 4
+tags: []
+user_id: yaniela
