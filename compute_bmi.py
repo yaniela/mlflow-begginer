@@ -10,10 +10,12 @@ def calculate_bmi(height, weight):
     """
     return weight / (height/100)**2
 
+# TODO hacer funcion general para para crear los experimentos, pasarle 
+# experiment_name como parámetro.
+
 def initialize_mlflow():
     # Initialize MLflow
-    experiment_name = "compute_bmi_experiments"
-    
+    experiment_name = "compute_bmi_experiments"  
 
     # Provide uri and connect to your tracking server
     mlflow.set_tracking_uri('http://127.0.0.1:5000/')
