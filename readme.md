@@ -6,11 +6,11 @@ Clone the repository
 
 pip install requirements.txt
 
-# Run Scripts
-
->> python compute_bmi.py 
->> python ml_classification.py
-
 # Run mlflow on terminal
 
 mlflow ui
+
+# Run Scripts on another terminal
+
+>> python compute_bmi.py 
+>> python ml_classification.py
