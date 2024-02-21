@@ -14,3 +14,4 @@ mlflow ui
 
 >> python compute_bmi.py 
 >> python ml_classification.py
+>> python ml_regression.py

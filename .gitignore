@@ -146,7 +146,7 @@ venv.bak/
 /mlflow-run
 /mlruns
 /mlartifacts
-
+/figures
 
 # mypy
 .mypy_cache/

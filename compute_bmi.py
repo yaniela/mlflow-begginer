@@ -1,52 +1,44 @@
 import mlflow
-from mlflow.tracking import MlflowClient
+from tabulate import tabulate
 
 def calculate_bmi(height, weight):
-    """ Function to calculate the BMI
+    """ Funcion para calcular el indice de masa corporal
+     en relación a la estatura y el peso.
 
     Args:
-        height ([float]): [height of a person]
-        weight ([float]): [weight of a person]
+        height ([float]): [estatura de la persona]
+        weight ([float]): [peso de la persona]
     """
     return weight / (height/100)**2
+ 
 
-# TODO hacer funcion general para para crear los experimentos, pasarle 
-# experiment_name como parámetro.
+if __name__ == "__main__":
 
-def initialize_mlflow():
-    # Initialize MLflow
-    experiment_name = "compute_bmi_experiments"  
+    # datos que van a ser tipo etiquetas
+    names = ['Bob', 'Lital', 'Simona']
+    ages = [18, 32, 56]
+
+    # parámetros de entrada de la funcion que calcula el BMI
+    heights = [150, 165, 123]
+    weights = [55, 80, 50]
+
+    # Para almacenar el resultado y mostrarlo en la terminal
+    bmis = []  #BMIs a calcular
 
     # Provide uri and connect to your tracking server
     mlflow.set_tracking_uri('http://127.0.0.1:5000/')
 
-    # Initialize MLflow client
-    client = MlflowClient()
-
-    # If experiment doesn't exist then it will create new
-    # else it will take the experiment id and will use to to run the experiments
-    try:
-        # Create experiment 
-        experiment_id = client.create_experiment(experiment_name)
-        return experiment_id
-    except:
-        # Get the experiment id if it already exists
-        experiment_id = client.get_experiment_by_name(experiment_name).experiment_id
-        return experiment_id
- 
-
-if __name__ == "__main__":
-    names = ['Bob', 'Lital', 'Simona']
-    ages = [18, 32, 44]
-    heights = [150, 165, 172]
-    weights = [55, 80, 100]  
-
-    experiment_id = initialize_mlflow()
     for i, (height, weight) in enumerate(zip(heights, weights)):   
         
-        with mlflow.start_run(experiment_id=experiment_id, run_name = names[i]):
-            print(names[i], ages[i], height, weight, calculate_bmi(height, weight))            
+        with mlflow.start_run(run_name = names[i]):           
+            bmis.append(calculate_bmi(height, weight))
             mlflow.set_tag('age', ages[i])   
             mlflow.log_param('height', height)
             mlflow.log_param('weight', weight)
-            mlflow.log_metric("bmi", calculate_bmi(height, weight))
+            mlflow.log_metric("bmi", bmis[i])
+
+    
+    # imprimo logs en terminal       
+    print(tabulate({"name": names,"age":ages,"height":heights,
+                    "weight":weights,"bmi":bmis}, headers="keys"))
+    

@@ -1,9 +1,13 @@
 import numpy as np
+from tabulate import tabulate
+from utils import initialize_mlflow
+
 from sklearn.linear_model import LogisticRegression
 from sklearn import svm
 
 import mlflow
 import mlflow.sklearn
+
 
 def logistic_regression(X, y):
     """ 
@@ -12,7 +16,7 @@ def logistic_regression(X, y):
     lr = LogisticRegression()
     lr.fit(X, y)
     score = lr.score(X, y)
-    print("Score: %s" % score)
+    #print("Score: %s" % score)
     return lr, score
 
 def support_vector_machine(X, y):
@@ -22,7 +26,7 @@ def support_vector_machine(X, y):
     svc = svm.SVC()
     svc.fit(X, y)
     score = svc.score(X, y)
-    print("Score: %s" % score)
+    #print("Score: %s" % score)
     return svc, score
 
 
@@ -34,16 +38,23 @@ if __name__ == "__main__":
     lr_model, lr_score = logistic_regression(X, y)    
     svc_model, svc_score = support_vector_machine(X, y)
 
+    # ejecuto los dos algoritos para obtener los modelos y los valores de la métrica score
     models = [lr_model, svc_model]
     scores = [lr_score, svc_score]
     model_names = ["Logistic regression", "Support vector machine"]
 
-    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    #creo un nuevo ambiente de experimentos para no guardarlos en el default
+    experiment_id = initialize_mlflow("ml_classification_experiments")  
+    runs_ids=[] 
     
+    # almaceno tracks en  mlflow
     for i, (model, score) in enumerate(zip(models, scores)):   
-        with mlflow.start_run(run_name = model_names[i]):
+        with mlflow.start_run(experiment_id=experiment_id, run_name = model_names[i]):
             mlflow.log_metric("score", score)
             mlflow.sklearn.log_model(model, "model")
-            print("Model saved in run %s" % mlflow.active_run().info.run_uuid)
+            runs_ids.append(mlflow.active_run().info.run_uuid)
 
+    # imprimo logs en terminal          
+    print(tabulate({"model_name": model_names,"score":scores, "experiment_run_id":runs_ids
+                    }, headers="keys"))
     
