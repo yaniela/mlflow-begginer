@@ -16,11 +16,11 @@ if __name__ == "__main__":
 
     # datos que van a ser tipo etiquetas
     names = ['Bob', 'Lital', 'Simona']
-    ages = [18, 32, 56]
+    ages = [18, 32, 100]
 
     # parámetros de entrada de la funcion que calcula el BMI
-    heights = [150, 165, 123]
-    weights = [55, 80, 50]
+    heights = [150, 165, 50]
+    weights = [55, 80, 80]
 
     # Para almacenar el resultado y mostrarlo en la terminal
     bmis = []  #BMIs a calcular

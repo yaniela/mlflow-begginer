@@ -23,7 +23,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # parametros de modelos
 random_state =  42
-estimators_number = 100
+estimators_number = 50
 
 # Lista de modelos a entrenar
 models = [

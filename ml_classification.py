@@ -34,11 +34,12 @@ if __name__ == "__main__":
     
     X = np.array([10, 20, 200, 250, 300, 30]).reshape(-1, 1)
     y = np.array([0, 0, 1, 1, 1, 0])
-    
+
+    # ejecuto los dos algoritos para obtener los modelos y los valores de la métrica score
     lr_model, lr_score = logistic_regression(X, y)    
     svc_model, svc_score = support_vector_machine(X, y)
 
-    # ejecuto los dos algoritos para obtener los modelos y los valores de la métrica score
+   
     models = [lr_model, svc_model]
     scores = [lr_score, svc_score]
     model_names = ["Logistic regression", "Support vector machine"]
